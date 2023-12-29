@@ -2,6 +2,7 @@ from flask import Flask, g, request
 from proxypool.storages.redis import RedisClient
 from proxypool.setting import API_HOST, API_PORT, API_THREADED, API_KEY, IS_DEV
 import functools
+import requests
 
 __all__ = ['app']
 
@@ -56,8 +57,19 @@ def get_proxy():
     get a random proxy
     :return: get a random proxy
     """
-    conn = get_conn()
-    return conn.random().string()
+    test_url = 'http://httpbin.org/ip'
+    while(True):
+        try:
+            conn = get_conn()
+            proxy = conn.random().string()
+            response = requests.get(test_url, proxies=proxy, timeout=5)
+            if response.status_code == 200:
+                print(f"Proxy {proxy['http']} is working.")
+                return proxy
+        except requests.RequestException as e:
+            print(f"Proxy {proxy['http']} failed. Error: {e}")
+
+    
 
 
 @app.route('/all')

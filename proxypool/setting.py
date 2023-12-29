@@ -87,7 +87,7 @@ API_THREADED = env.bool('API_THREADED', True)
 # add an api key to get proxy
 # need a header of `API-KEY` in get request to pass the authenticate
 # API_KEY='', do not need `API-KEY` header
-API_KEY = env.str('API_KEY', '')
+API_KEY = env.str('API_KEY', 'sdfsd-werwre-w5khjkl')
 
 # flags of enable
 ENABLE_TESTER = env.bool('ENABLE_TESTER', True)
