@@ -14,5 +14,6 @@ services:
     # volumes:
     #   - proxypool/crawlers/private:/app/proxypool/crawlers/private
     environment:
+      API_KEY: sdfsd-werwre-w5khjkl
       PROXYPOOL_REDIS_HOST: redis4proxypool
       
